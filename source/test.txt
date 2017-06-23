@@ -1,0 +1,43 @@
+
+
+	float Length = 2;
+	float Radius = 0.5f;
+  float Color[4], Ang;
+  
+  glDisable(GL_CULL_FACE );
+  glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+  glGetFloatv(GL_CURRENT_COLOR, Color);
+  
+  // Draw a fan of tris beginning from the top of the arrow head
+  glBegin(GL_TRIANGLE_FAN);
+  
+  glColor4fv(Color);
+  glVertex3f(Length,0,0);
+  for (Ang=0;Ang<=360;Ang+=10) {
+    float posy, posz, factor;
+    
+    posy = (float)(Radius*cos(Ang/180.0*M_PI));
+    posz = (float)(Radius*sin(Ang/180.0*M_PI));
+    factor = (float)((fabs(Ang-180))/360);
+    
+    glColor4f(Color[0]*factor, Color[1]*factor, Color[2]*factor, Color[3]);
+    glVertex3f(0, posy, posz);
+  }
+  
+  glEnd();
+  
+  glBegin(GL_TRIANGLE_FAN);
+  
+  // Draw a fan of tris beginning for the flat section of the arrow head
+  glColor4fv(Color);
+  glVertex3f(0,0,0);
+  for (Ang=0;Ang<=360;Ang+=10) {
+    float posy, posz, factor;
+    posy = (float)(Radius*cos(Ang/180.0*M_PI));
+    posz = (float)(Radius*sin(Ang/180.0*M_PI));
+    factor = (float)((fabs(Ang-180))/360);
+    
+    glColor4f(Color[0]*factor, Color[1]*factor, Color[2]*factor, Color[3]);
+    glVertex3f(0, posy, posz);
+  }
+  
