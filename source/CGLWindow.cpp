@@ -1,4 +1,5 @@
 #include "CGLWindow.h"
+#include <stdio.h>
 
 //////////////////////////////////////////////////////////////////
 // Koppeling WIN32 -> Klasse
@@ -367,17 +368,9 @@ void CGLWindow::End()
 		glVertex3f(0, 0, 0); glVertex3f(0, 0, 0.1f);
 	glEnd();
 
+    printf("glGetError() = %d\n", glGetError());
+
+    printf("GetLastError() = %d\n", GetLastError());
+
 	SwapBuffers( m_hDC );
-	if ( m_bFocus )
-	{
-		SelectObject(m_hDC, CreatePen(PS_SOLID,3,RGB(100,200,255)));
-		SelectObject(m_hDC, GetStockObject(NULL_BRUSH));
-		Rectangle(m_hDC, 1, 1, m_nWidth, m_nHeight);
-	}
-	else
-	{
-		SelectObject(m_hDC, CreatePen(PS_SOLID,2,RGB(50,50,50)));
-		SelectObject(m_hDC, GetStockObject(NULL_BRUSH));
-		Rectangle(m_hDC, 1, 1, m_nWidth, m_nHeight);
-	}
 }
