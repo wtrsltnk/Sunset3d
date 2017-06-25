@@ -1,5 +1,4 @@
 #include "CGLWindow.h"
-#include <stdio.h>
 
 //////////////////////////////////////////////////////////////////
 // Koppeling WIN32 -> Klasse
@@ -367,10 +366,6 @@ void CGLWindow::End()
 		glColor3f(1.0f, 0.0f, 0.0f);
 		glVertex3f(0, 0, 0); glVertex3f(0, 0, 0.1f);
 	glEnd();
-
-    printf("glGetError() = %d\n", glGetError());
-
-    printf("GetLastError() = %d\n", GetLastError());
 
 	SwapBuffers( m_hDC );
 }
